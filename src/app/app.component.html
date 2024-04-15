@@ -10,25 +10,18 @@
         </span>
       </div>
       <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name:</label>
-        <input type="text" class="form-control" id="lastName" ngModel name="lastName" #lastName="ngModel" required>
-        <span class="help-block" *ngIf="lastName.invalid && lastName.touched">
-          Lastname is required
-        </span>
-      </div>
-      <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" class="form-control" id="email" ngModel name="email" #email="ngModel" required email>
         <span class="help-block" *ngIf="email.invalid && email.touched">
           Email is required
         </span>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
         <input type="text" class="form-control" id="username" ngModel name="username" #username="ngModel">
         <br>
         <button (click)="suggestUserName()" type="button" class="btn btn-info">Suggest username</button>
-      </div>
+      </div> -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone Number:</label>
         <input type="number" class="form-control" id="phone" ngModel name="phone" #phone="ngModel" required>
@@ -36,10 +29,6 @@
           Phone is required
         </span>
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="address" class="form-label">Address:</label>
-      <textarea class="form-control" id="address" rows="3" ngModel name="address" #address="ngModel"></textarea>
     </div>
     <div class="mb-3">
       <label class="form-label">Gender:</label>
@@ -64,12 +53,8 @@
     </div>
     <div class="mb-3 form-check">
       <div>
-        <input type="checkbox" id="checkbox1" name="checkbox1" value="checkbox1" ngModel="checkbox1">
-        <label for="checkbox1">Checkbox 1</label>
-      </div>
-      <div>
-        <input type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2" ngModel>
-        <label for="checkbox2">Checkbox 2</label>
+        <input type="checkbox" id="remember_me" name="remember_me" ngModel="remember_me">
+        <label for="remember_me">Remember me</label>
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!formValue.valid">Submit</button>

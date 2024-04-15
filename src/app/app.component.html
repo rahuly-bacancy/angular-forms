@@ -3,10 +3,10 @@
   <form (ngSubmit)="submitForm(formValue)" #formValue="ngForm">
     <div ngModelGroup="userData">
       <div class="mb-3">
-        <label for="firstName" class="form-label">First Name:</label>
-        <input type="text" class="form-control" id="firstName" ngModel name="firstName" #firstName="ngModel" required>
-        <span class="help-block" *ngIf="firstName.invalid && firstName.touched">
-          Firstname is required
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" class="form-control" id="name" ngModel name="name" #name="ngModel" required>
+        <span class="help-block" *ngIf="name.invalid && name.touched">
+          Name is required
         </span>
       </div>
       <div class="mb-3">

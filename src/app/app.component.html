@@ -4,11 +4,12 @@
     <div ngModelGroup="userData">
       <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
-        <input type="text" class="form-control" id="name" ngModel name="name" #name="ngModel" required>
+        <input type="text" class="form-control" id="name" [ngModel]="defaultName" name="name" #name="ngModel" required>
         <span class="help-block" *ngIf="name.invalid && name.touched">
           Name is required
         </span>
       </div>
+      <div>{{defaultName}}</div>
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" class="form-control" id="email" ngModel name="email" #email="ngModel" required email>
@@ -16,12 +17,6 @@
           Email is required
         </span>
       </div>
-      <!-- <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
-        <input type="text" class="form-control" id="username" ngModel name="username" #username="ngModel">
-        <br>
-        <button (click)="suggestUserName()" type="button" class="btn btn-info">Suggest username</button>
-      </div> -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone Number:</label>
         <input type="number" class="form-control" id="phone" ngModel name="phone" #phone="ngModel" required>
@@ -33,11 +28,15 @@
     <div class="mb-3">
       <label class="form-label">Gender:</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="male" value="male" required [ngModel]="selectedGender" name="gender" #gender="ngModel">
+        <input class="form-check-input" type="radio" name="gender" id="male" value="male" 
+        required [ngModel]="selectedGender" 
+        name="gender" #gender="ngModel">
         <label class="form-check-label" for="male">Male</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="female" value="female" required [ngModel]="selectedGender" name="gender" #gender="ngModel">
+        <input class="form-check-input" type="radio" name="gender" id="female" value="female" 
+        required [ngModel]="selectedGender" 
+        name="gender" #gender="ngModel">
         <label class="form-check-label" for="female">Female</label>
       </div>
     </div>
@@ -59,4 +58,16 @@
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!formValue.valid">Submit</button>
   </form>
+  <div class="mt-3">
+    <div class="row">
+      <div class="col">
+        <h5>User Data</h5>
+        <div>Name: {{this.userData.name}}</div>
+        <div>Email: {{this.userData.email}}</div>
+        <div>Phone: {{this.userData.phone}}</div>
+        <div>Gender: {{this.userData.gender}}</div>
+        <div>Hobby: {{this.userData.hobby}}</div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -11,59 +11,54 @@ export class AppComponent {
   options = [
     {
       'value': 'option_1',
-      'label': 'Option 1' 
+      'label': 'Option 1'
     },
     {
       'value': 'option_2',
-      'label': 'Option 2' 
+      'label': 'Option 2'
     }
   ];
   selectedOptions = "music";
   selectedGender = "male";
   userName = 'adminUser';
-
+  defaultName = "Rahul";
   @ViewChild('formValue') fromData!: NgForm;
-  
+  userData = { name: '', email: '', phone: '', gender: '', hobby: '' }
   suggestUserName() {
-    // this.fromData.setValue({
-    //   'userData': {
-    //     'firstName': "test",
-    //     'lastName': "test",
-    //     'email': 'test@test',
-    //     'username': this.userName,
-    //     'phone': 84012
-    //   },
-    //   'address': 'test',
-    //   'gender': 'male',
-    //   'hobbies': 'reading',
-    //   'checkbox1': true,
-    //   'checkbox2':false
-    // })
-    // this.fromData.setValue({
-    //   'userData': {
-    //     'firstName': "",
-    //     'lastName': "",
-    //     'email': '',
-    //     'username': this.userName,
-    //     'phone': ''
-    //   },
-    //   'address': '',
-    //   'gender': '',
-    //   'hobbies': '',
-    //   'checkbox1': false,
-    //   'checkbox2':false
-    // })
-   this.fromData.form.patchValue({
-    'userData': {
-      'username': this.userName
-    }
-   })
+    this.fromData.form.patchValue({
+      'userData': {
+        'username': this.userName
+      }
+    })
   }
 
-  submitForm(formValue: NgForm){
+  submitForm(formValue: NgForm) {
     console.log(this.fromData.form);
-    console.log("---------test----------")
-    this.fromData.reset();
-    console.log(this.fromData.form)
+    this.userData.name = this.fromData.form.value.userData.name;
+    this.userData.email = this.fromData.form.value.userData.email;
+    this.userData.phone = this.fromData.form.value.userData.phone;
+    this.userData.gender = this.fromData.form.value.gender;
+    this.userData.hobby = this.fromData.form.value.hobbies;
+  }
+
+  setValue() {
+    this.fromData.setValue({
+      'userData': {
+        'name': 'Rahul Yadav',
+        'email': 'rahul@gmail.com',
+        'phone': 8401265823
+      },
+      'gender': 'male',
+      'hobbies': 'reading',
+      'remember_me': true
+    })
+  }
+  patchValue() {
+    this.fromData.form.patchValue({
+      'userData': {
+        'email': 'rahul@gmail.com',
+        'phone': 8401265823,
+      }
+    })
   }
 }

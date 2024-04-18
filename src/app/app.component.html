@@ -1,32 +1,43 @@
 <div class="container mt-3">
   <h1>Registration Form</h1>
-  <form>
-    <div class="mb-3">
-      <label for="name" class="form-label">Name:</label>
-      <input type="text" class="form-control" id="name" required>
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" required>
-    </div>
-    <div class="mb-3">
-      <label for="phone" class="form-label">Phone Number:</label>
-      <input type="tel" class="form-control" id="phone" required>
+  <form (ngSubmit)="submitForm(formData)" #formData="ngForm">
+    <div ngModelGroup="userData">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" class="form-control" id="name" required minlength="4"
+        name="name" #name="ngModel" [(ngModel)]="defaultname">
+        {{defaultname}}
+        <br>
+        <span class="error-msg" *ngIf="!name.valid && name.errors?.['minlength'] && name.touched">
+          Min length 4 is required!
+        </span>
+        <span class="error-msg" *ngIf="!name.valid && name.errors?.['required'] && name.touched">
+          Name is required!
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" ngModel name="email" required email>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number:</label>
+        <input type="text" class="form-control" id="phone" ngModel name="phone" required>
+      </div>
     </div>
     <div class="mb-3">
       <label class="form-label">Gender:</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+        <input class="form-check-input" type="radio" name="gender" id="male" value="male" [ngModel]="gender" name="gender" required>
         <label class="form-check-label" for="male">Male</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+        <input class="form-check-input" type="radio" name="gender" id="female" value="female" [ngModel]="gender" ngModel name="gender" required>
         <label class="form-check-label" for="female">Female</label>
       </div>
     </div>
     <div class="mb-3">
       <label for="hobbies" class="form-label">Hobbies:</label>
-      <select class="form-select" id="hobbies" aria-label="Hobbies">
+      <select class="form-select" id="hobbies" aria-label="Hobbies" ngModel name="hobbies">
         <option value="">Select Hobby</option>
         <option value="reading">Reading</option>
         <option value="sports">Sports</option>
@@ -35,9 +46,19 @@
       </select>
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="remember_me">
+      <input type="checkbox" class="form-check-input" id="remember_me" ngModel name="remember_me">
       <label class="form-check-label" for="remember_me">Remember me</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <div class="mt-3">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary" (click)="setValue()">Set value</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary" (click)="patchValue()">Patch value</button>
+      </div>
+    </div>
+  </div>
 </div>
